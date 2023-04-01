@@ -1,5 +1,7 @@
 import { Controller, Post } from '@nestjs/common';
 import { Body, Get, Param } from '@nestjs/common/decorators';
+import { ApiBody } from '@nestjs/swagger';
+import { UserDto } from './dtos/users.dto';
 import { User } from './interfaces/users.interface';
 import { UsersService } from './users.service';
 
@@ -11,7 +13,8 @@ export class UsersController {
   ) {}
 
   @Post()
-  async createUser(@Body() user: User) {
+  @ApiBody({ type: UserDto })
+  async createUser(@Body() user: UserDto) {
     return this.usersService.createUser(user);
   }
 
