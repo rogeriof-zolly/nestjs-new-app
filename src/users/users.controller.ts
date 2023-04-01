@@ -2,7 +2,6 @@ import { Controller, Post } from '@nestjs/common';
 import { Body, Get, Param } from '@nestjs/common/decorators';
 import { ApiBody } from '@nestjs/swagger';
 import { UserDto } from './dtos/users.dto';
-import { User } from './interfaces/users.interface';
 import { UsersService } from './users.service';
 
 @Controller('users')
