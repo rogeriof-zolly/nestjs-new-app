@@ -5,14 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserSchema } from './users/schemas/users.schema';
 import { UsersModule } from './users/users.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [UsersModule, TypeOrmModule.forRoot({
-    type: "sqlite",
-    database: 'db',
-    entities: [UserSchema],
-    synchronize: true
-  })],
+  imports: [UsersModule, DatabaseModule],
   controllers: [AppController],
   providers: [AppService],
 })
