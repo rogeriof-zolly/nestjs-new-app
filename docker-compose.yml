@@ -2,6 +2,7 @@ version: '3.5'
 
 volumes:
   data:
+    external: true
 
 services:
   database:
@@ -11,5 +12,5 @@ services:
     environment:
       - POSTGRES_PASSWORD=123456
     volumes:
-      - data:/var/lib/postresql/data
+      - data:/var/lib/postgresql/data
     
