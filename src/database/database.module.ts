@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { BooksSchema } from 'src/books/schemas/books.schema';
 import { UserSchema } from 'src/users/schemas/users.schema';
 
 @Module({
@@ -8,8 +9,8 @@ import { UserSchema } from 'src/users/schemas/users.schema';
     host: 'localhost',
     username: 'postgres',
     password: '123456',
-    database: 'user',
-    entities: [UserSchema],
+    database: 'application',
+    entities: [UserSchema, BooksSchema],
     synchronize: true
   })]
 })
