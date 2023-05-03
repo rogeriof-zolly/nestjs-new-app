@@ -2,14 +2,19 @@ import { SendGridService } from '@anchan828/nest-sendgrid';
 import { Injectable } from '@nestjs/common';
 import { EmailDto } from 'dtos/email.dto';
 import { PhoneDto } from 'dtos/phone.dto';
+import * as zenvia from '@zenvia/sdk'
 
 @Injectable()
 export class AppService {
 
   constructor(private readonly sendGridService: SendGridService){}
 
-  sendPhone(phoneData: PhoneDto) {
-    console.log(phoneData)
+  zenviaClient = new zenvia.Client(process.env.ZENVIA_TOKEN);
+  sms = this.zenviaClient.getChannel('sms');
+
+  async sendPhone(phoneData: PhoneDto): Promise<void> {
+    const content = new zenvia.TextContent(`Hello ${phoneData.name}! Your user was created successfully!`);
+    await this.sms.sendMessage(process.env.KEYWORD, phoneData.phone, content);
   }
 
   async sendEmail(emailData: EmailDto): Promise<void> {
